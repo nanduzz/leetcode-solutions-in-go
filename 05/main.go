@@ -1,9 +1,5 @@
 package main
 
-func main() {
-
-}
-
 // Had problems figuring this out for myself
 // got solution from here:
 // https://leetcode.com/problems/longest-palindromic-substring/solutions/3497051/c-java-python-javascript-detailed-explanation-easy-solution-2-approach/

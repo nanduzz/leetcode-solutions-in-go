@@ -2,10 +2,6 @@ package main
 
 import "math"
 
-func main() {
-
-}
-
 /*
 Description:
 Implement the myAtoi(string s) function, which converts a string to a 32-bit
@@ -22,44 +18,53 @@ Read in next the characters until the next non-digit character or the end of
 the input is reached. The rest of the string is ignored.
 Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32). If no
 digits were read, then the integer is 0. Change the sign as necessary (from step 2).
-If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then
+If the integer is out of the 32-bit signed integer range [-2^31, 2^31 - 1], then
 clamp the integer so that it remains in the range. Specifically, integers less
-than -231 should be clamped to -231, and integers greater than 231 - 1 should
-be clamped to 231 - 1.
+than -2^31 should be clamped to -2^31, and integers greater than 2^31 - 1 should
+be clamped to 2^31 - 1.
 Return the integer as the final result.
 */
 
-var conversionMap = map[string]int{
-	"0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9,
+var conversionMap = map[uint8]uint8{
+	'0': 0,
+	'1': 1,
+	'2': 2,
+	'3': 3,
+	'4': 4,
+	'5': 5,
+	'6': 6,
+	'7': 7,
+	'8': 8,
+	'9': 9,
 }
 
 func myAtoi(s string) int {
 	var n int64 = 0
+	digits := make([]uint8, 200)
 	neg := false
-	var digits []int
-	j := 0
 	started := false
+	j := 0
 	for i := 0; i < len(s); i++ {
-		if string(s[i]) == "-" {
+		if s[i] == '-' {
 			if started {
 				break
 			}
 			neg = true
 			started = true
 			continue
-		} else if string(s[i]) == "+" {
+		} else if s[i] == '+' {
 			if started {
 				break
 			}
 			started = true
 			continue
 		}
-		v, isNumber := conversionMap[string(s[i])]
+		v, isNumber := conversionMap[s[i]]
 		if isNumber {
 			digits = append(digits, v)
 			started = true
 			j++
-		} else if string(s[i]) != " " || started {
+		} else if s[i] != ' ' || started {
 			break
 		}
 	}
