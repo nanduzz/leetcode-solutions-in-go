@@ -2,10 +2,6 @@ package main
 
 import "math"
 
-func main() {
-
-}
-
 /*
 Description:
 Implement the myAtoi(string s) function, which converts a string to a 32-bit

@@ -5,10 +5,6 @@ import (
 	"strings"
 )
 
-func main() {
-
-}
-
 func convert(s string, numRows int) string {
 	lines := make([]string, numRows)
 	size := len(s)
